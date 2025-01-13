@@ -23,11 +23,11 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
-  Future<void> login(String email, String password) async {
+  Future<void> login(String email) async {
     state = state.copyWith(
         isLoading: true, errorMessage: null, successMessage: null);
     try {
-      final response = await _authRepository.login(email, password);
+      final response = await _authRepository.login(email);
 
       // Extract token from response
       final token = response['token'];

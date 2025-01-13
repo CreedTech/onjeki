@@ -9,11 +9,10 @@ import 'package:onjeki/presentation/inbox/inbox_screen.dart';
 import 'package:onjeki/presentation/profile/profile_screen.dart';
 import 'package:onjeki/presentation/wishlist/wishlist_screen.dart';
 import 'package:onjeki/widgets/custom_bottom_bar.dart';
-import 'package:smooth_sheets/smooth_sheets.dart';
 
 import '../../domain/providers/auth_providers.dart';
 import '../../routes/app_routes.dart';
-import '../../widgets/modal_with_navigator.dart';
+import '../auth/modal/login_modal.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -35,13 +34,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   ];
 
   // Define the routes corresponding to the tabs
-  final List<String> _routes = [
-    AppRoutes.exploreScreen,
-    AppRoutes.wishlistScreen,
-    AppRoutes.inboxScreen,
-    AppRoutes.historyScreen,
-    AppRoutes.profileScreen,
-  ];
+  // final List<String> _routes = [
+  //   AppRoutes.exploreScreen,
+  //   AppRoutes.wishlistScreen,
+  //   AppRoutes.inboxScreen,
+  //   AppRoutes.historyScreen,
+  //   AppRoutes.profileScreen,
+  // ];
 
   Future<void> _initializeAuth() async {
     final authNotifier = ref.read(authNotifierProvider.notifier);
@@ -54,10 +53,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         // Navigate to login screen if not authenticated
         // context.go('/login')
         showCupertinoModalBottomSheet(
+          topRadius: const Radius.circular(30),
           expand: true,
           context: context,
           backgroundColor: Colors.transparent,
-          builder: (context) => ModalWithNavigator(),
+          builder: (context) => LoginModal(),
         );
         // context.go('/login_screen');
         // Navigator.of(context).pushReplacementNamed(AppRoutes.loginScreen);
@@ -68,7 +68,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _initializeAuth();
+    // _initializeAuth();
   }
 
   @override
@@ -84,7 +84,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             _currentIndex = type.index;
           });
 
-          // Optional: Update URL if you're using deep linking or GoRouter
+          // Update URL if you're using deep linking
           // context.go(_routes[type.index]);
         },
       ),

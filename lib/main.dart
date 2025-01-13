@@ -31,7 +31,15 @@ class MyApp extends StatelessWidget {
           theme: lightTheme,
           darkTheme: darkTheme,
           routerConfig: AppRoutes().router,
-          
+          builder: (context, child) {
+            return MediaQuery(
+              data: MediaQuery.of(context).copyWith(
+                textScaler: const TextScaler.linear(1.0),
+              ),
+              child: child!,
+            );
+          },
+
           // initialRoute: AppRoutes.initialRoute,
           // navigatorKey: NavigatorService.navigatorKey,
           // getPages: AppRoutes.routes,
@@ -75,7 +83,7 @@ class _MyAppWrapperState extends ConsumerState<MyAppWrapper> {
       });
     } else {
       WidgetsBinding.instance.addPostFrameCallback((_) {
-       context.go('/home_screen');
+        context.go('/home_screen');
 // Navigate to LoginScreen
       });
     }

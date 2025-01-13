@@ -5,13 +5,12 @@ class AuthRepository {
 
   AuthRepository(this._apiService);
 
-  Future<Map<String, dynamic>> login(String email, String password) async {
+  Future<Map<String, dynamic>> login(String email) async {
     try {
       final response = await _apiService.post(
         '/login',
         data: {
           'email': email,
-          'password': password,
         },
       );
       return response.data;

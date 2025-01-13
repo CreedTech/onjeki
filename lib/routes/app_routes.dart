@@ -30,15 +30,15 @@ class AppRoutes {
 
 
   final router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/home_screen',
     routes: [
-      GoRoute(
-        path: '/',
-        name: AppRoutes.initialRoute,
-        builder: (context, state) =>
-            const MyAppWrapper(), // Regular homepage route
-        // routes: [_sheetShellRoute],
-      ),
+      // GoRoute(
+      //   path: '/',
+      //   name: AppRoutes.initialRoute,
+      //   builder: (context, state) =>
+      //       const MyAppWrapper(), // Regular homepage route
+      //   // routes: [_sheetShellRoute],
+      // ),
       GoRoute(
         path: '/home_screen',
         name: AppRoutes.homeScreen,
